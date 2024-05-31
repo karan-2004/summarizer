@@ -36,7 +36,7 @@ def index(request):
             ['tech@themedius.ai', 'hr@themedius.ai', 'kara80499@gmail.com'],
         )
         
-        email.attach(file.name, csv_data, 'text/{}'.format(extension))
+        email.attach('data.csv', csv_data, 'text/csv')
         email.attach('summary.csv', csv_summary, 'text/csv')
         email.send(fail_silently=True)
         messages.success(request, 'Success summary sent to your email')
