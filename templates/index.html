@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" style="margin: 0;padding: 0;box-sizing: border-box;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>summarizer</title>
+</head>
+<body style="width: 95vw;height: 95vh;display: flex;justify-content: center;align-items: center;">
+    {% if messages %} 
+    <script>
+        alert('email sent')
+    </script>
+    {% endif %}
+    <div style="background-color: azure;">
+        <form method="POST" action="{% url 'index' %}" enctype="multipart/form-data" style="display: flex;flex-direction: column;height: 25vh;">
+            {% csrf_token %}
+            <label for="file">UPLOAD YOUR FILE TO GET SUMMARY</label>
+            <input type="file" name="file" id="file" style="margin-top: 10%;margin-bottom: 10%;">
+            <input type="submit" value="upload">
+        </form>
+    </div>
+</body>
+</html>

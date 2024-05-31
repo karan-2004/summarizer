@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-jsbqcs@cw#j(oxl5stx*&_d3v5!dxg0uf^a^%adwaj5k22=k=@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['karanraj1324.pythonanywhere.com']
+ALLOWED_HOSTS = ['karanraj1324.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'summarizer.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +128,10 @@ MEDIA_ROOT = '/home/karanraj1324/summarizer/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/karanraj1324/summarizer/static'
 STATIC_URL = '/static/'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kara80499@gmail.com'
+EMAIL_HOST_PASSWORD = 'tcpvumdbimqzcnsp'
