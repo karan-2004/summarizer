@@ -7,9 +7,11 @@
 </head>
 <body style="width: 95vw;height: 95vh;display: flex;justify-content: center;align-items: center;">
     {% if messages %} 
-    <script>
-        alert('email sent')
-    </script>
+    {% for message in messages %}
+        <script>
+            alert('{{message}}')
+        </script>
+    {% endfor %}
     {% endif %}
     <div style="background-color: azure;">
         <form method="POST" action="{% url 'index' %}" enctype="multipart/form-data" style="display: flex;flex-direction: column;height: 25vh;">

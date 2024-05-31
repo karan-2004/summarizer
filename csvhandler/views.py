@@ -8,8 +8,14 @@ from io import StringIO
 
 def index(request):
     if request.method == 'POST':
+        allowed_extionsions = ['csv', 'xlsx']
         file = request.FILES['file']
         extension = file.name.split('.')[-1]
+
+        if extension not in allowed_extionsions:
+            messages.error(request, '.csv/.xlsx file extions only allowed')
+            return render(request, 'index.html')
+
         if extension == 'csv':
             df = pd.read_csv(file)
         else:
@@ -26,9 +32,6 @@ def index(request):
         summary.to_csv(csv_buffer, index=False)
         csv_summary = csv_buffer.getvalue()
 
-        
-        
-        
         email = EmailMessage(
             "Python Assignment - Karanraj",
             "Thank you for the oppurtunity",
@@ -40,7 +43,5 @@ def index(request):
         email.attach('summary.csv', csv_summary, 'text/csv')
         email.send(fail_silently=True)
         messages.success(request, 'Success summary sent to your email')
-
-
 
     return render(request, 'index.html')
