@@ -23,7 +23,7 @@ def index(request):
         summary.sort_values(by='counts', ascending=False, inplace=True)
 
         csv_buffer = StringIO()
-        df.to_csv(csv_buffer, index=False)
+        summary.to_csv(csv_buffer, index=False)
         csv_summary = csv_buffer.getvalue()
 
         
@@ -36,7 +36,7 @@ def index(request):
             ['tech@themedius.ai', 'hr@themedius.ai', 'kara80499@gmail.com'],
         )
         
-        email.attach(file.name, csv_data, 'text/csv')
+        email.attach(file.name, csv_data, 'text/{}'.format(extension))
         email.attach('summary.csv', csv_summary, 'text/csv')
         email.send(fail_silently=True)
         messages.success(request, 'Success summary sent to your email')
